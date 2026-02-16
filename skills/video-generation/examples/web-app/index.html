@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMove AI | Professional Camera Movement Simulator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.5);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.15) 0px, transparent 50%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Preview Area */
+        .preview-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-viewport {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #020617;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 100px rgba(0,0,0,1);
+        }
+
+        #video-element {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.1s linear, filter 0.1s linear;
+        }
+
+        .placeholder-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .placeholder-content:hover {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .placeholder-content svg {
+            width: 64px;
+            height: 64px;
+            fill: currentColor;
+        }
+
+        /* Controls Area */
+        .controls-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            height: fit-content;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        select {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            color: white;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1rem;
+        }
+
+        select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px var(--accent-glow);
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: #7c3aed;
+            box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .movement-info {
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 12px;
+            padding: 1rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .movement-info h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+            color: var(--accent);
+        }
+
+        .movement-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Movement Effects - Applied via JS */
+        .movement-active {
+            transition: transform 3s cubic-bezier(0.4, 0, 0.2, 1), filter 3s ease !important;
+        }
+
+        .whip-pan-active {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease !important;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CineMove AI</h1>
+        <p>REVOLUTIONIZING POST-PRODUCTION CAMERA MOVEMENT</p>
+    </header>
+
+    <div class="main-container">
+        <div class="preview-card">
+            <div class="video-viewport" id="drop-zone">
+                <video id="video-element" loop muted></video>
+                <div class="placeholder-content" id="placeholder">
+                    <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                    <p>Drag & Drop Video or Click to Upload</p>
+                    <span style="font-size: 0.8rem; opacity: 0.7;">MP4, WebM recommended</span>
+                </div>
+            </div>
+            <input type="file" id="file-input" hidden accept="video/*">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                    <div id="status-dot" style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444;"></div>
+                    <span id="video-name" style="font-size: 0.9rem; color: var(--text-secondary);">No video loaded</span>
+                </div>
+                <button class="btn-secondary" id="reset-btn" style="width: auto; padding: 0.5rem 1rem;">Reset View</button>
+            </div>
+        </div>
+
+        <div class="controls-card">
+            <div class="control-group">
+                <label for="movement-select">Camera Movement</label>
+                <select id="movement-select">
+                    <option value="tracking">Tracking Shot</option>
+                    <option value="dolly">Dolly Shot</option>
+                    <option value="truck">Truck Shot</option>
+                    <option value="pan">Pan Shot</option>
+                    <option value="whip">Whip Pan</option>
+                    <option value="tilt">Tilt Shot</option>
+                    <option value="crane">Crane Shot</option>
+                    <option value="aerial">Aerial Shot</option>
+                    <option value="pedestal">Pedestal Shot</option>
+                    <option value="handheld">Handheld Shot</option>
+                    <option value="zoom">Zoom Shot</option>
+                    <option value="rack">Rack Focus</option>
+                    <option value="dollyzoom">Dolly Zoom</option>
+                </select>
+            </div>
+
+            <div class="movement-info">
+                <h4 id="info-title">Tracking Shot</h4>
+                <p id="info-desc">Any shot in which the camera physically moves sideways, forward, or backward through the scene.</p>
+            </div>
+
+            <button class="btn-primary" id="apply-btn">Apply Movement</button>
+
+            <div class="control-group">
+                <label>Intensity</label>
+                <input type="range" id="intensity" min="1" max="100" value="50" style="width: 100%; accent-color: var(--accent);">
+            </div>
+            
+            <p style="font-size: 0.8rem; color: var(--text-secondary); text-align: center;">
+                Pro Tip: Use high focal length settings for better dolly zoom effects.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video-element');
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const placeholder = document.getElementById('placeholder');
+        const videoName = document.getElementById('video-name');
+        const statusDot = document.getElementById('status-dot');
+        const applyBtn = document.getElementById('apply-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const movementSelect = document.getElementById('movement-select');
+        const infoTitle = document.getElementById('info-title');
+        const infoDesc = document.getElementById('info-desc');
+        const intensity = document.getElementById('intensity');
+
+        const movements = {
+            tracking: {
+                title: "Tracking Shot",
+                desc: "Moves sideways, forward, or backward through the scene. Immersive and fluid.",
+                apply: (i) => `translate(${i * 0.5}%, ${i * 0.2}%) scale(${1 + i/200})`
+            },
+            dolly: {
+                title: "Dolly Shot",
+                desc: "Moves forward or backward. Focuses attention or reveals context.",
+                apply: (i) => `scale(${1 + i/100})`
+            },
+            truck: {
+                title: "Truck Shot",
+                desc: "Moves horizontally (left/right) along a track.",
+                apply: (i) => `translateX(${i}%)`
+            },
+            pan: {
+                title: "Pan Shot",
+                desc: "Pivots left or right while base remains fixed.",
+                apply: (i) => `translateX(${i}%) perspective(1000px) rotateY(${i/5}deg)`
+            },
+            whip: {
+                title: "Whip Pan",
+                desc: "High-speed pan with motion blur effects.",
+                apply: (i) => `translateX(${i}%)`,
+                blur: (i) => `blur(${i/5}px)`
+            },
+            tilt: {
+                title: "Tilt Shot",
+                desc: "Pivots vertically up or down.",
+                apply: (i) => `translateY(${i}%) perspective(1000px) rotateX(${-i/5}deg)`
+            },
+            crane: {
+                title: "Crane Shot",
+                desc: "Epic sweeping motion lifting the camera high.",
+                apply: (i) => `translateY(${-i}%) scale(${1 + i/200}) rotate(${-i/10}deg)`
+            },
+            aerial: {
+                title: "Aerial Shot",
+                desc: "High bird's eye view, subtle drifting motion.",
+                apply: (i) => `scale(${0.8 + i/500}) translate(${i/2}%, ${i/4}%)`
+            },
+            pedestal: {
+                title: "Pedestal Shot",
+                desc: "Entire camera moves up or down vertically.",
+                apply: (i) => `translateY(${-i}%)`
+            },
+            handheld: {
+                title: "Handheld Shot",
+                desc: "Unstabilized, jittery motion for a raw, frenzied feel.",
+                apply: (i) => `translate(${Math.random()*i/5}%, ${Math.random()*i/5}%) rotate(${Math.random()}deg)`
+            },
+            zoom: {
+                title: "Zoom Shot",
+                desc: "Stationary camera changing its focal length.",
+                apply: (i) => `scale(${1 + i/100})`
+            },
+            rack: {
+                title: "Rack Focus",
+                desc: "Focus shifts mid-shot between distance planes.",
+                apply: (i) => `scale(1.05)`,
+                blur: (i) => `blur(${i/5}px)`
+            },
+            dollyzoom: {
+                title: "Dolly Zoom",
+                desc: "Psychological Vertigo effect. Background distorts while subject size remains fixed.",
+                apply: (i) => `scale(${1 + i/100}) translateZ(${-i*10}px)`
+            }
+        };
+
+        // File Handling
+        dropZone.onclick = () => fileInput.click();
+        fileInput.onchange = (e) => handleFile(e.target.files[0]);
+        
+        dropZone.ondragover = (e) => { e.preventDefault(); dropZone.style.background = 'rgba(255,255,255,0.05)'; };
+        dropZone.ondragleave = () => { dropZone.style.background = 'transparent'; };
+        dropZone.ondrop = (e) => {
+            e.preventDefault();
+            dropZone.style.background = 'transparent';
+            handleFile(e.dataTransfer.files[0]);
+        };
+
+        function handleFile(file) {
+            if (!file || !file.type.startsWith('video/')) return;
+            const url = URL.createObjectURL(file);
+            video.src = url;
+            video.play();
+            placeholder.style.display = 'none';
+            videoName.textContent = file.name;
+            statusDot.style.background = '#22c55e';
+        }
+
+        // Controls Logic
+        movementSelect.onchange = () => {
+            const m = movements[movementSelect.value];
+            infoTitle.textContent = m.title;
+            infoDesc.textContent = m.desc;
+            resetView();
+        };
+
+        applyBtn.onclick = () => {
+            if (!video.src) {
+                alert("Please upload a video first!");
+                return;
+            }
+            
+            const moveType = movementSelect.value;
+            const move = movements[moveType];
+            const i = parseFloat(intensity.value);
+
+            // Apply special timing for whip pan
+            video.className = moveType === 'whip' ? 'whip-pan-active' : 'movement-active';
+
+            // Special case: focal rack (it's a transition)
+            if (moveType === 'rack' || moveType === 'whip') {
+               video.style.transform = move.apply(i);
+               video.style.filter = move.blur ? move.blur(i) : 'none';
+               setTimeout(() => {
+                   video.style.filter = 'none';
+               }, moveType === 'whip' ? 500 : 3000);
+            } else if (moveType === 'handheld') {
+                let count = 0;
+                const jitter = setInterval(() => {
+                    video.style.transform = move.apply(i);
+                    count++;
+                    if (count > 100) clearInterval(jitter);
+                }, 50);
+            } else {
+                video.style.transform = move.apply(i);
+            }
+        };
+
+        resetBtn.onclick = resetView;
+
+        function resetView() {
+            video.className = '';
+            video.style.transform = 'none';
+            video.style.filter = 'none';
+        }
+    </script>
+</body>
+</html>

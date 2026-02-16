@@ -1,6 +1,6 @@
-# 🌌 Antigravity Awesome Skills: 253+ Agentic Skills for Claude Code, Gemini CLI, Cursor, Copilot & More
+# 🌌 Antigravity Awesome Skills: 257+ Agentic Skills for Claude Code, Gemini CLI, Cursor, Copilot & More
 
-> **The Ultimate Collection of 253+ Universal Agentic Skills for AI Coding Assistants — Claude Code, Gemini CLI, Codex CLI, Antigravity IDE, GitHub Copilot, Cursor, OpenCode**
+> **The Ultimate Collection of 257+ Universal Agentic Skills for AI Coding Assistants — Claude Code, Gemini CLI, Codex CLI, Antigravity IDE, GitHub Copilot, Cursor, OpenCode**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Anthropic-purple)](https://claude.ai)
@@ -11,7 +11,7 @@
 [![OpenCode](https://img.shields.io/badge/OpenCode-CLI-gray)](https://github.com/opencode-ai/opencode)
 [![Antigravity](https://img.shields.io/badge/Antigravity-DeepMind-red)](https://github.com/sickn33/antigravity-awesome-skills)
 
-**Antigravity Awesome Skills** is a curated, battle-tested library of **251 high-performance agentic skills** designed to work seamlessly across all major AI coding assistants:
+**Antigravity Awesome Skills** is a curated, battle-tested library of **255 high-performance agentic skills** designed to work seamlessly across all major AI coding assistants:
 
 - 🟣 **Claude Code** (Anthropic CLI)
 - 🔵 **Gemini CLI** (Google DeepMind)
@@ -113,7 +113,7 @@ The repository is organized into several key areas of expertise:
 | **🤖 AI Agents & LLM**      | **~31**      | LangGraph, CrewAI, Langfuse, RAG Engineer, Prompt Engineer, Voice Agents, Browser Automation, Agent Memory Systems           |
 | **🔄 Workflow & Planning**  | **~6**       | Writing Plans, Executing Plans, Concise Planning, Verification Before Completion, Code Review (Requesting/Receiving)         |
 | **📄 Document Processing**  | **~4**       | DOCX (Official), PDF (Official), PPTX (Official), XLSX (Official)                                                            |
-| **🧪 Testing & QA**         | **~4**       | Webapp Testing, Playwright Automation, Test Fixing, Testing Patterns                                                         |
+| **🧪 Testing & QA**         | **~8**       | Webapp Testing, Bug Reporting, Test Data Gen, Gap Analysis, Impact Analysis, Playwright, Test Fixing                         |
 | **📈 Product & Strategy**   | **~8**       | Product Manager Toolkit, Content Creator, ASO, Doc Co-authoring, Brainstorming, Internal Comms                               |
 | **📣 Marketing & Growth**   | **~23**      | Page CRO, Copywriting, SEO Audit, Paid Ads, Email Sequence, Pricing Strategy, Referral Program, Launch Strategy              |
 | **🚀 Maker Tools**          | **~11**      | Micro-SaaS Launcher, Browser Extension Builder, Telegram Bot, AI Wrapper Product, Viral Generator, 3D Web Experience         |
@@ -128,7 +128,7 @@ The repository is organized into several key areas of expertise:
 
 [Check out our Starter Packs in docs/BUNDLES.md](docs/BUNDLES.md) to find the perfect toolkit for your role.
 
-## Full Skill Registry (253/253)
+## Full Skill Registry (257/257)
 
 > [!NOTE] > **Document Skills**: We provide both **community** and **official Anthropic** versions for DOCX, PDF, PPTX, and XLSX. Locally, the official versions are used by default (via symlinks). In the repository, both versions are available for flexibility.
 
@@ -158,6 +158,7 @@ The repository is organized into several key areas of expertise:
 | **app-builder** | ⚪ | Main application building orchestrator. Creates full-stack applications from natural language requests. Determines project type, selects tech stack, coordinates agents. | `skills/app-builder` |
 | **app-store-optimization** | ⚪ | Complete App Store Optimization (ASO) toolkit for researching, optimizing, and tracking mobile app performance on Apple App Store and Google Play Store | `skills/app-store-optimization` |
 | **architecture** | ⚪ | Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR documentation. Use when making architecture decisions or analyzing system design. | `skills/architecture` |
+| **automating-bug-reporting** | ⚪ | Processes failed test executions, screenshots, and logs to generate comprehensive bug reports and automatically create JIRA tickets. | `skills/automating-bug-reporting` |
 | **autonomous-agent-patterns** | ⚪ | Design patterns for building autonomous coding agents. Covers tool integration, permission systems, browser automation, and human-in-the-loop workflows. Use when building AI agents, designing tool APIs, implementing permission systems, or creating autonomous coding assistants. | `skills/autonomous-agent-patterns` |
 | **autonomous-agents** | ⚪ | Autonomous agents are AI systems that can independently decompose goals, plan actions, execute tools, and self-correct without constant human guidance. The challenge isn't making them capable - it's making them reliable. Every extra decision multiplies failure probability.  This skill covers agent loops (ReAct, Plan-Execute), goal decomposition, reflection patterns, and production reliability. Key insight: compounding error rates kill autonomous agents. A 95% success rate per step drops to 60% b | `skills/autonomous-agents` |
 | **avalonia-layout-zafiro** | ⚪ | Guidelines for modern Avalonia UI layout using Zafiro.Avalonia, emphasizing shared styles, generic components, and avoiding XAML redundancy. | `skills/avalonia-layout-zafiro` |
@@ -240,6 +241,7 @@ The repository is organized into several key areas of expertise:
 | **geo-fundamentals** | ⚪ | Generative Engine Optimization for AI search engines (ChatGPT, Claude, Perplexity). | `skills/geo-fundamentals` |
 | **git-pushing** | ⚪ | Stage, commit, and push git changes with conventional commit messages. Use when user wants to commit and push changes, mentions pushing to remote, or asks to save and push their work. Also activates when user says "push changes", "commit and push", "push this", "push to github", or similar git workflow requests. | `skills/git-pushing` |
 | **github-workflow-automation** | ⚪ | Automate GitHub workflows with AI assistance. Includes PR reviews, issue triage, CI/CD integration, and Git operations. Use when automating GitHub workflows, setting up PR review automation, creating GitHub Actions, or triaging issues. | `skills/github-workflow-automation` |
+| **generating-test-data** | ⚪ | Automatically generates valid, invalid, and boundary test data based on field names and validation rules. | `skills/generating-test-data` |
 | **graphql** | ⚪ | GraphQL gives clients exactly the data they need - no more, no less. One endpoint, typed schema, introspection. But the flexibility that makes it powerful also makes it dangerous. Without proper controls, clients can craft queries that bring down your server.  This skill covers schema design, resolvers, DataLoader for N+1 prevention, federation for microservices, and client integration with Apollo/urql. Key insight: GraphQL is a contract. The schema is the API documentation. Design it carefully. | `skills/graphql` |
 | **HTML Injection Testing** | ⚪ | This skill should be used when the user asks to "test for HTML injection", "inject HTML into web pages", "perform HTML injection attacks", "deface web applications", or "test content injection vulnerabilities". It provides comprehensive HTML injection attack techniques and testing methodologies. | `skills/html-injection-testing` |
 | **hubspot-integration** | ⚪ | Expert patterns for HubSpot CRM integration including OAuth authentication, CRM objects, associations, batch operations, webhooks, and custom objects. Covers Node.js and Python SDKs. Use when: hubspot, hubspot api, hubspot crm, hubspot integration, contacts api. | `skills/hubspot-integration` |
@@ -262,6 +264,7 @@ The repository is organized into several key areas of expertise:
 | **marketing-ideas** | ⚪ | Provide proven marketing strategies and growth ideas for SaaS and software products, prioritized using a marketing feasibility scoring system. | `skills/marketing-ideas` |
 | **marketing-psychology** | ⚪ | Apply behavioral science and mental models to marketing decisions, prioritized using a psychological leverage and feasibility scoring system. | `skills/marketing-psychology` |
 | **mcp-builder** | ⚪ | Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK). | `skills/mcp-builder` |
+| **mapping-requirements-to-test-cases** | ⚪ | Analyzes requirement documents and existing test cases (Excel/JIRA) to identify coverage gaps, duplicates, and missing scenarios. | `skills/mapping-requirements-to-test-cases` |
 | **Metasploit Framework** | ⚪ | This skill should be used when the user asks to "use Metasploit for penetration testing", "exploit vulnerabilities with msfconsole", "create payloads with msfvenom", "perform post-exploitation", "use auxiliary modules for scanning", or "develop custom exploits". It provides comprehensive guidance for leveraging the Metasploit Framework in security assessments. | `skills/metasploit-framework` |
 | **micro-saas-launcher** | ⚪ | Expert in launching small, focused SaaS products fast - the indie hacker approach to building profitable software. Covers idea validation, MVP development, pricing, launch strategies, and growing to sustainable revenue. Ship in weeks, not months. Use when: micro saas, indie hacker, small saas, side project, saas mvp. | `skills/micro-saas-launcher` |
 | **mobile-design** | ⚪ | Mobile-first design thinking and decision-making for iOS and Android apps. Touch interaction, performance patterns, platform conventions. Teaches principles, not fixed values. Use when building React Native, Flutter, or native mobile apps. | `skills/mobile-design` |
@@ -322,6 +325,7 @@ The repository is organized into several key areas of expertise:
 | **salesforce-development** | ⚪ | Expert patterns for Salesforce platform development including Lightning Web Components (LWC), Apex triggers and classes, REST/Bulk APIs, Connected Apps, and Salesforce DX with scratch orgs and 2nd generation packages (2GP). Use when: salesforce, sfdc, apex, lwc, lightning web components. | `skills/salesforce-development` |
 | **schema-markup** | ⚪ | Design, validate, and optimize schema.org structured data for eligibility, correctness, and measurable SEO impact. Use when the user wants to add, fix, audit, or scale schema markup (JSON-LD) for rich results. This skill evaluates whether schema should be implemented, what types are valid, and how to deploy safely according to Google guidelines. | `skills/schema-markup` |
 | **scroll-experience** | ⚪ | Expert in building immersive scroll-driven experiences - parallax storytelling, scroll animations, interactive narratives, and cinematic web experiences. Like NY Times interactives, Apple product pages, and award-winning web experiences. Makes websites feel like experiences, not just pages. Use when: scroll animation, parallax, scroll storytelling, interactive story, cinematic website. | `skills/scroll-experience` |
+| **regression-impact-analysis** | ⚪ | Analyzes code changes (via GitHub diffs or JIRA tickets) and maps them to existing test cases to identify the minimum necessary regression set. | `skills/regression-impact-analysis` |
 | **Security Scanning Tools** | ⚪ | This skill should be used when the user asks to "perform vulnerability scanning", "scan networks for open ports", "assess web application security", "scan wireless networks", "detect malware", "check cloud security", or "evaluate system compliance". It provides comprehensive guidance on security scanning tools and methodologies. | `skills/scanning-tools` |
 | **security-review** | ⚪ | Use this skill when adding authentication, handling user input, working with secrets, creating API endpoints, or implementing payment/sensitive features. Provides comprehensive security checklist and patterns. | `skills/cc-skill-security-review` |
 | **segment-cdp** | ⚪ | Expert patterns for Segment Customer Data Platform including Analytics.js, server-side tracking, tracking plans with Protocols, identity resolution, destinations configuration, and data governance best practices. Use when: segment, analytics.js, customer data platform, cdp, tracking plan. | `skills/segment-cdp` |
