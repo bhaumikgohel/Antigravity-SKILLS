@@ -1,0 +1,122 @@
+{
+  "preferred_terms": {
+    "sign in": [
+      "login",
+      "log in",
+      "signin",
+      "log-in"
+    ],
+    "sign out": [
+      "logout",
+      "log out",
+      "logout",
+      "log-out"
+    ],
+    "sign up": [
+      "register",
+      "create account",
+      "join",
+      "signup"
+    ],
+    "email": [
+      "e-mail",
+      "e mail",
+      "E-mail"
+    ],
+    "OK": [
+      "okay",
+      "o.k.",
+      "Ok",
+      "ok"
+    ],
+    "username": [
+      "user name",
+      "user-name",
+      "login id"
+    ],
+    "password": [
+      "pass word",
+      "pass-word"
+    ],
+    "credit card": [
+      "creditcard",
+      "credit-card",
+      "CC"
+    ],
+    "phone number": [
+      "phonenumber",
+      "phone-number",
+      "mobile number"
+    ],
+    "ZIP code": [
+      "zipcode",
+      "zip-code",
+      "postal code"
+    ],
+    "cancel": [
+      "abort",
+      "terminate"
+    ],
+    "delete": [
+      "remove",
+      "erase"
+    ],
+    "save": [
+      "store",
+      "commit"
+    ],
+    "submit": [
+      "send",
+      "post"
+    ]
+  },
+  "format_rules": {
+    "currency": "$#,##0.00",
+    "date": "MMM DD, YYYY",
+    "time": "12h",
+    "percentage": "#0%",
+    "phone_us": "(###) ###-####"
+  },
+  "casing": {
+    "headings": "title",
+    "buttons": "title",
+    "labels": "sentence",
+    "placeholders": "sentence",
+    "tooltips": "sentence",
+    "error_messages": "sentence",
+    "success_messages": "sentence",
+    "menu_items": "title",
+    "links": "sentence"
+  },
+  "product_names": {
+    "always_capitalize": [
+      "ProductName",
+      "FeatureX",
+      "BrandY"
+    ],
+    "never_capitalize": [
+      "generic term",
+      "common feature"
+    ]
+  },
+  "prohibited_terms": [
+    "user",
+    "dummy",
+    "test",
+    "foo",
+    "bar",
+    "lorem ipsum"
+  ],
+  "accessibility": {
+    "avoid": [
+      "click here",
+      "read more",
+      "learn more"
+    ],
+    "prefer": [
+      "Download the report",
+      "Read the full article",
+      "Learn about pricing"
+    ]
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "name": "Staging Environment Smoke Tests",
+  "environment": "staging",
+  "base_url": "${BASE_URL}",
+  "timeouts": {
+    "navigation": 15000,
+    "element": 5000,
+    "assertion": 3000
+  },
+  "retry": {
+    "attempts": 2,
+    "delay": 1000
+  },
+  "notifications": {
+    "slack": {
+      "webhook": "${SLACK_WEBHOOK_URL}",
+      "channel": "${SLACK_CHANNEL}",
+      "on_success": true,
+      "on_failure": true
+    }
+  },
+  "scenarios": [
+    {
+      "id": "login",
+      "name": "User Login Flow",
+      "description": "Verify login functionality with valid credentials",
+      "priority": "critical",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/login"
+        },
+        {
+          "action": "screenshot",
+          "name": "01_login_page"
+        },
+        {
+          "action": "assert",
+          "selector": "[data-testid='login-form']",
+          "expect": "visible"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-testid='email-input']",
+          "value": "${TEST_USER}"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-testid='password-input']",
+          "value": "${TEST_PASS}"
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid='signin-button']"
+        },
+        {
+          "action": "wait",
+          "duration": 2000
+        },
+        {
+          "action": "assert",
+          "selector": "[data-testid='dashboard-header']",
+          "expect": "visible"
+        },
+        {
+          "action": "screenshot",
+          "name": "02_dashboard_after_login"
+        }
+      ]
+    },
+    {
+      "id": "dashboard",
+      "name": "Dashboard Load",
+      "description": "Verify dashboard loads with all widgets",
+      "priority": "critical",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/dashboard"
+        },
+        {
+          "action": "wait",
+          "duration": 3000
+        },
+        {
+          "action": "screenshot",
+          "name": "03_dashboard_view"
+        },
+        {
+          "action": "assert",
+          "selector": "[data-testid='stats-widget']",
+          "expect": "visible"
+        },
+        {
+          "action": "assert",
+          "selector": "[data-testid='activity-feed']",
+          "expect": "visible"
+        },
+        {
+          "action": "assert",
+          "selector": "[data-testid='loading-spinner']",
+          "expect": "hidden"
+        }
+      ]
+    },
+    {
+      "id": "navigation",
+      "name": "Main Navigation",
+      "description": "Verify all main navigation links work",
+      "priority": "high",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/dashboard"
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid='nav-profile']"
+        },
+        {
+          "action": "wait",
+          "duration": 1000
+        },
+        {
+          "action": "assert",
+          "selector": "[data-testid='profile-page']",
+          "expect": "visible"
+        },
+        {
+          "action": "screenshot",
+          "name": "04_profile_page"
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid='nav-settings']"
+        },
+        {
+          "action": "wait",
+          "duration": 1000
+        },
+        {
+          "action": "assert",
+          "selector": "[data-testid='settings-page']",
+          "expect": "visible"
+        },
+        {
+          "action": "screenshot",
+          "name": "05_settings_page"
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "name": "Search Functionality",
+      "description": "Verify search returns results",
+      "priority": "medium",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/dashboard"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-testid='search-input']",
+          "value": "test query"
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid='search-button']"
+        },
+        {
+          "action": "wait",
+          "duration": 2000
+        },
+        {
+          "action": "screenshot",
+          "name": "06_search_results"
+        },
+        {
+          "action": "assert",
+          "selector": "[data-testid='search-results']",
+          "expect": "visible"
+        }
+      ]
+    },
+    {
+      "id": "logout",
+      "name": "Logout Flow",
+      "description": "Verify user can log out successfully",
+      "priority": "high",
+      "steps": [
+        {
+          "action": "navigate",
+          "url": "/dashboard"
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid='user-menu']"
+        },
+        {
+          "action": "wait",
+          "duration": 500
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid='logout-option']"
+        },
+        {
+          "action": "wait",
+          "duration": 1500
+        },
+        {
+          "action": "screenshot",
+          "name": "07_after_logout"
+        },
+        {
+          "action": "assert",
+          "selector": "[data-testid='login-form']",
+          "expect": "visible"
+        }
+      ]
+    }
+  ]
+}
