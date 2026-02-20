@@ -1,0 +1,54 @@
+{
+  "name": "Hourly API Check",
+  "nodes": [
+    {
+      "id": "e5f6a7b8-c9d0-1234-efab-567890123456",
+      "name": "Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [250, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "f6a7b8c9-d0e1-2345-fabc-678901234567",
+      "name": "Action",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [450, 300],
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.example.com/status",
+        "authentication": "none",
+        "sendBody": false,
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": []
+}

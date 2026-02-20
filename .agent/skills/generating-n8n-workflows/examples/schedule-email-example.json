@@ -1,0 +1,54 @@
+{
+  "name": "Daily Email Report",
+  "nodes": [
+    {
+      "id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
+      "name": "Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [250, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "d4e5f6a7-b8c9-0123-defa-456789012345",
+      "name": "Action",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "parameters": {
+        "toEmail": "user@example.com",
+        "subject": "Daily Report",
+        "text": "Here is your daily report.",
+        "html": "",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": []
+}

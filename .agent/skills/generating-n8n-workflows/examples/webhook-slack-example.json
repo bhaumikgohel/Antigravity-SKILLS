@@ -1,0 +1,50 @@
+{
+  "name": "Webhook to Slack Notification",
+  "nodes": [
+    {
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "webhook-a1b2c3d4",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
+      "name": "Action",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2,
+      "position": [450, 300],
+      "parameters": {
+        "operation": "post",
+        "channel": "#general",
+        "text": "Webhook received!",
+        "attachments": [],
+        "otherOptions": {}
+      }
+    }
+  ],
+  "connections": {
+    "Trigger": {
+      "main": [
+        [
+          {
+            "node": "Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": []
+}
